@@ -1,0 +1,58 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+<article class="single-article">
+    {# Article Header #}
+    <header class="article-header">
+        <div class="container skinny-container">
+            <div class="article-meta-top">
+                <a href="/blog" class="back-link">&larr; {{ trans('Back to Magazine') }}</a>
+                <span class="category">{{ article.category.name }}</span>
+            </div>
+            
+            <h1 class="article-headline">{{ article.title }}</h1>
+            
+            <div class="article-byline">
+                <img src="{{ article.author.avatar|default('path/to/default-avatar.png') }}" class="author-avatar" alt="{{ article.author.name }}">
+                <div class="byline-info">
+                    <span class="author-name">{{ article.author.name }}</span>
+                    <span class="publish-date">{{ article.created_at|date("F j, Y") }}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="article-hero-image container">
+            <img src="{{ article.image.url }}" alt="{{ article.title }}">
+        </div>
+    </header>
+
+    <div class="container article-layout">
+        {# Main Content #}
+        <div class="article-body">
+            {{ article.content|raw }}
+        </div>
+
+        {# Sidebar / CTA #}
+        <aside class="article-sidebar">
+            <div class="sidebar-widget subscribe-widget">
+                <h3>{{ trans('Love this content?') }}</h3>
+                <p>{{ trans('Get full access to all our stories and physical copies delivered to you.') }}</p>
+                <a href="/products/annual-subscription" class="btn btn-primary btn-block">{{ trans('Subscribe Today') }}</a>
+            </div>
+            
+            {% if related_articles %}
+            <div class="sidebar-widget related-widget">
+                <h4>{{ trans('Read Next') }}</h4>
+                <ul class="related-list">
+                    {% for related in related_articles %}
+                    <li>
+                        <a href="{{ related.url }}">{{ related.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </aside>
+    </div>
+</article>
+{% endblock %}

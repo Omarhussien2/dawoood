@@ -1,0 +1,45 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+<div class="page-header blog-header">
+    <div class="container">
+        <h1>{{ trans('Magazine Articles') }}</h1>
+        <p>{{ trans('Insights, stories, and news from our editors.') }}</p>
+    </div>
+</div>
+
+<div class="container blog-container">
+    <div class="blog-grid">
+        {% for article in articles %}
+            <article class="blog-card">
+                <a href="{{ article.url }}" class="blog-create-link">
+                    <div class="blog-thumb">
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy">
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span class="author">{{ article.author.name }}</span>
+                            <span class="separator">•</span>
+                            <span class="date">{{ article.created_at|date("M d, Y") }}</span>
+                        </div>
+                        <h2 class="blog-title">{{ article.title }}</h2>
+                        <p class="blog-excerpt">{{ article.summary|length > 120 ? article.summary|slice(0, 120) ~ '...' : article.summary }}</p>
+                        <span class="read-more">{{ trans('Read Article') }} &rarr;</span>
+                    </div>
+                </a>
+            </article>
+        {% else %}
+            <div class="no-articles">
+                <p>{{ trans('No articles found.') }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# Pagination #}
+    {% if articles.links %}
+        <div class="pagination-wrapper">
+            {{ articles.links|raw }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+<div class="page-header archive-header">
+    <div class="container">
+        <h1>{{ trans('Magazine Archive') }}</h1>
+        <p>{{ trans('Explore our collection of back issues and special editions.') }}</p>
+    </div>
+</div>
+
+<div class="container archive-container">
+    {# Filters / Categories #}
+    <div class="archive-filters">
+        <span class="filter-label">{{ trans('Filter by:') }}</span>
+        <ul class="filter-list">
+            <li><a href="/products" class="active">{{ trans('All Issues') }}</a></li>
+            {% for category in store.categories %}
+            <li><a href="{{ category.url }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {# Product Grid #}
+    <div class="products-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <a href="{{ product.url }}">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                        {% if product.is_on_sale %}
+                            <span class="sale-badge">{{ trans('Sale') }}</span>
+                        {% endif %}
+                    </div>
+                </a>
+                <div class="product-info">
+                    <h3 class="product-title"><a href="{{ product.url }}">{{ product.name }}</a></h3>
+                    <div class="product-price">
+                        {% if product.is_on_sale %}
+                            <span class="regular-price">{{ product.regular_price|money }}</span>
+                            <span class="sale-price">{{ product.price|money }}</span>
+                        {% else %}
+                            <span class="price">{{ product.price|money }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm" onclick="salla.cart.addItem({{ product.id }})">
+                            {{ trans('Add to Cart') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="no-products">
+                <p>{{ trans('No issues found in this archive.') }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# Pagination #}
+    {% if products.links %}
+        <div class="pagination-wrapper">
+            {{ products.links|raw }}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

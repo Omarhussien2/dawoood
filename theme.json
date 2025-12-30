@@ -1,0 +1,40 @@
+{
+  "name": "Magazine Theme",
+  "version": "1.0.0",
+  "description": "A custom Salla theme for magazine subscriptions (Annual, Semi-Annual, Single Issue).",
+  "settings": [
+    {
+      "label": "General Settings",
+      "type": "section",
+      "id": "general",
+      "fields": [
+        {
+          "label": "Primary Color",
+          "type": "color",
+          "id": "primary_color",
+          "default": "#000000"
+        }
+      ]
+    },
+    {
+      "label": "Subscription Display",
+      "type": "section",
+      "id": "subscription_settings",
+      "fields": [
+        {
+          "label": "Show Subscription Badges",
+          "type": "switch",
+          "id": "show_badges",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "support": {
+    "features": [
+      "products",
+      "pages",
+      "blog"
+    ]
+  }
+}

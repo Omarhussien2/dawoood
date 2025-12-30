@@ -1,0 +1,8 @@
+{
+    "name": "omarh/magazine-theme",
+    "description": "Magazine Theme for Salla",
+    "type": "salla-theme",
+    "require": {
+        "salla/twilight": "*"
+    }
+}

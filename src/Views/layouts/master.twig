@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ store.name }}</title>
+    
+    {{ theme.assets.css('assets/css/app.css') | raw }}
+    
+    {% block styles %}{% endblock %}
+</head>
+<body class="store-layout">
+    <header class="store-header">
+        <div class="container">
+            <div class="logo">
+                <a href="{{ store.url }}">
+                    <img src="{{ store.logo }}" alt="{{ store.name }}">
+                </a>
+            </div>
+            <nav>
+                <!-- Navigation menu here -->
+            </nav>
+        </div>
+    </header>
+
+    <main id="app">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="store-footer">
+        <div class="container">
+            <p>&copy; {{ "now"|date("Y") }} {{ store.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.salla.network/js/twilight.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

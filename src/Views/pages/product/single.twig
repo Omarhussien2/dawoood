@@ -1,0 +1,56 @@
+{% extends "layouts/master.twig" %}
+
+{% block content %}
+<div class="container product-page">
+    <div class="product-gallery">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="main-image">
+    </div>
+
+    <div class="product-details">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <div class="product-description">
+            {{ product.description | raw }}
+        </div>
+
+        {# Custom Magazine Subscription Section #}
+        <div class="subscription-section">
+            <h3>{{ trans('Choose your plan') }}</h3>
+            
+            <div class="subscription-options">
+                {# Single Issue #}
+                <div class="sub-option-card">
+                    <div class="sub-title">{{ trans('Single Issue') }}</div>
+                    <div class="sub-price">{{ product.price|money }}</div>
+                    <div class="sub-period">{{ trans('One-time purchase') }}</div>
+                    <button class="btn btn-primary btn-add-cart" onclick="salla.cart.addItem({{ product.id }})">
+                        {{ trans('Buy Now') }}
+                    </button>
+                </div>
+
+                {# Semi-Annual - Implementing mock logic for display purposes #}
+                {# In a real scenario, these would likely be product options or variants #}
+                <div class="sub-option-card">
+                    <div class="sub-title">{{ trans('Semi-Annual Subscription') }}</div>
+                    <div class="sub-price">{{ (product.price * 6 * 0.9)|money }}</div> 
+                    <div class="sub-period">{{ trans('6 Issues (10% Off)') }}</div>
+                     <span class="badge">{{ trans('Save 10%') }}</span>
+                    <button class="btn btn-outline btn-add-cart">
+                        {{ trans('Subscribe') }}
+                    </button>
+                </div>
+
+                {# Annual - Implementing mock logic for display purposes #}
+                <div class="sub-option-card featured">
+                    <div class="sub-title">{{ trans('Annual Subscription') }}</div>
+                    <div class="sub-price">{{ (product.price * 12 * 0.8)|money }}</div>
+                    <div class="sub-period">{{ trans('12 Issues (20% Off)') }}</div>
+                    <span class="badge">{{ trans('Best Value') }}</span>
+                    <button class="btn btn-primary btn-add-cart">
+                        {{ trans('Subscribe') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
