@@ -1,124 +1,14 @@
 {% extends "layouts/master.twig" %}
 
 {% block content %}
-{# Hero Section - Promoting the Latest Issue #}
-<section class="hero-section">
-    <div class="container hero-container">
-        <div class="hero-content">
-            <span class="issue-number">{{ trans('Latest Issue') }} #{{ store.products.latest.id }}</span>
-            <h1 class="hero-title">{{ trans('Discover the World of Knowledge') }}</h1>
-            <p class="hero-subtitle">{{ trans('Exclusive interviews, in-depth analysis, and the stories that matter.') }}</p>
-            <div class="hero-actions">
-                <a href="{{ store.products.latest.url }}" class="btn btn-primary">{{ trans('Get This Issue') }}</a>
-                <a href="#subscribe" class="btn btn-outline">{{ trans('Subscribe Now') }}</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            {# Placeholder for the magazine cover image #}
-            <img src="{{ store.products.latest.image.url }}" alt="Latest Magazine Cover">
-        </div>
-    </div>
-</section>
-
-{# Features / Benefits Section #}
-<section class="features-section">
-    <div class="container">
-        <div class="features-grid">
-            <div class="feature-item">
-                <i class="sicon-book-open"></i>
-                <h3>{{ trans('Digital & Print') }}</h3>
-                <p>{{ trans('Access your magazine anywhere, or enjoy the classic print experience.') }}</p>
-            </div>
-            <div class="feature-item">
-                <i class="sicon-star"></i>
-                <h3>{{ trans('Exclusive Content') }}</h3>
-                <p>{{ trans('Stories you wont find anywhere else, curated by experts.') }}</p>
-            </div>
-            <div class="feature-item">
-                <i class="sicon-shipping"></i>
-                <h3>{{ trans('Free Delivery') }}</h3>
-                <p>{{ trans('Annual subscribers get free delivery to their doorstep.') }}</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-{# Subscription Pricing Table #}
-<section id="subscribe" class="pricing-section">
-    <div class="container">
-        <h2 class="section-title">{{ trans('Choose Your Plan') }}</h2>
-        <div class="pricing-grid">
-            {# Single Issue #}
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>{{ trans('Single Issue') }}</h3>
-                    <div class="price">{{ trans('SAR 25') }}</div>
-                </div>
-                <ul class="pricing-features">
-                    <li>{{ trans('One physical copy') }}</li>
-                    <li>{{ trans('Digital access not included') }}</li>
-                </ul>
-                <a href="/products" class="btn btn-outline">{{ trans('Browse Issues') }}</a>
-            </div>
-
-            {# Annual Subscription - Featured #}
-            <div class="pricing-card featured">
-                <div class="badge">{{ trans('Best Value') }}</div>
-                <div class="pricing-header">
-                    <h3>{{ trans('Annual') }}</h3>
-                    <div class="price">{{ trans('SAR 240') }}</div>
-                    <span class="savings">{{ trans('Save 20%') }}</span>
-                </div>
-                <ul class="pricing-features">
-                    <li>{{ trans('12 Physical Issues') }}</li>
-                    <li>{{ trans('Unlimited Digital Access') }}</li>
-                    <li>{{ trans('Free Delivery') }}</li>
-                    <li>{{ trans('Exclusive Archive Access') }}</li>
-                </ul>
-                {# Link to a specific 'Annual Subscription' product or category #}
-                <a href="/products/annual-subscription" class="btn btn-primary">{{ trans('Subscribe Now') }}</a>
-            </div>
-
-            {# Semi-Annual #}
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3>{{ trans('Semi-Annual') }}</h3>
-                    <div class="price">{{ trans('SAR 135') }}</div>
-                </div>
-                <ul class="pricing-features">
-                    <li>{{ trans('6 Physical Issues') }}</li>
-                    <li>{{ trans('Unlimited Digital Access') }}</li>
-                    <li>{{ trans('Free Delivery') }}</li>
-                </ul>
-                <a href="/products/semi-annual-subscription" class="btn btn-outline">{{ trans('Subscribe') }}</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-{# Latest Articles Preview #}
-<section class="latest-articles">
-    <div class="container">
-        <h2 class="section-title">{{ trans('From the Editors') }}</h2>
-        <div class="articles-grid">
-            {% for article in store.blog.articles|slice(0, 3) %}
-                <article class="article-card">
-                    <a href="{{ article.url }}" class="article-link">
-                        <div class="article-image">
-                            <img src="{{ article.image.url }}" alt="{{ article.title }}">
-                        </div>
-                        <div class="article-content">
-                            <span class="article-date">{{ article.created_at|date("M d, Y") }}</span>
-                            <h3 class="article-title">{{ article.title }}</h3>
-                            <p class="article-excerpt">{{ article.summary }}</p>
-                        </div>
-                    </a>
-                </article>
-            {% endfor %}
-        </div>
-        <div class="center-btn">
-            <a href="/blog" class="btn btn-text">{{ trans('Read All Articles') }} &rarr;</a>
-        </div>
-    </div>
-</section>
+    {# Render Dynamic Components from Salla Dashboard #}
+    {% for component in page.components %}
+        {% component component %}
+    {% else %}
+        {# Fallback content if no components are added via dashboard #}
+        {# This ensures the page isn't empty on first load #}
+        {% include 'components/home/hero.twig' %}
+        {% include 'components/home/pricing.twig' %}
+        {% include 'components/home/articles.twig' %}
+    {% endfor %}
 {% endblock %}

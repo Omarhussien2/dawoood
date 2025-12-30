@@ -1,0 +1,25 @@
+{# Latest Articles Component #}
+<section class="latest-articles" {{ component.attributes }}>
+    <div class="container">
+        <h2 class="section-title">{{ component.title|default(trans('From the Editors')) }}</h2>
+        <div class="articles-grid">
+            {% for article in store.blog.articles|slice(0, 3) %}
+                <article class="article-card">
+                    <a href="{{ article.url }}" class="article-link">
+                        <div class="article-image">
+                            <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                        </div>
+                        <div class="article-content">
+                            <span class="article-date">{{ article.created_at|date("M d, Y") }}</span>
+                            <h3 class="article-title">{{ article.title }}</h3>
+                            <p class="article-excerpt">{{ article.summary }}</p>
+                        </div>
+                    </a>
+                </article>
+            {% endfor %}
+        </div>
+        <div class="center-btn">
+            <a href="/blog" class="btn btn-text">{{ trans('Read All Articles') }} &rarr;</a>
+        </div>
+    </div>
+</section>

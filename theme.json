@@ -1,7 +1,7 @@
 {
   "name": "Magazine Theme",
   "version": "1.0.0",
-  "description": "A custom Salla theme for magazine subscriptions (Annual, Semi-Annual, Single Issue).",
+  "description": "A custom Salla theme for magazine subscriptions.",
   "settings": [
     {
       "label": "General Settings",
@@ -15,26 +15,34 @@
           "default": "#000000"
         }
       ]
-    },
-    {
-      "label": "Subscription Display",
-      "type": "section",
-      "id": "subscription_settings",
-      "fields": [
-        {
-          "label": "Show Subscription Badges",
-          "type": "switch",
-          "id": "show_badges",
-          "default": true
-        }
-      ]
     }
   ],
-  "support": {
-    "features": [
-      "products",
-      "pages",
-      "blog"
-    ]
-  }
+  "components": [
+    {
+      "name": "hero_slider",
+      "title": "Magazine Cover (Hero)",
+      "path": "components/home/hero.twig",
+      "icon": "image",
+      "fields": [
+        {
+          "id": "heading",
+          "type": "text",
+          "label": "Main Headline",
+          "default": "Discover the World of Knowledge"
+        }
+      ]
+    },
+    {
+      "name": "pricing_table",
+      "title": "Subscription Plans",
+      "path": "components/home/pricing.twig",
+      "icon": "money_bill"
+    },
+    {
+      "name": "featured_articles",
+      "title": "Latest Articles",
+      "path": "components/home/articles.twig",
+      "icon": "align_left"
+    }
+  ]
 }

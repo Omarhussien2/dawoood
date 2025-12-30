@@ -1,0 +1,17 @@
+{# Hero Section Component #}
+<section class="hero-section" {{ component.attributes }}>
+    <div class="container hero-container">
+        <div class="hero-content">
+            <span class="issue-number">{{ component.title|default(trans('Latest Issue')) }} #{{ store.products.latest.id }}</span>
+            <h1 class="hero-title">{{ component.heading|default(trans('Discover the World of Knowledge')) }}</h1>
+            <p class="hero-subtitle">{{ component.description|default(trans('Exclusive interviews, in-depth analysis, and the stories that matter.')) }}</p>
+            <div class="hero-actions">
+                <a href="{{ store.products.latest.url }}" class="btn btn-primary">{{ trans('Get This Issue') }}</a>
+                <a href="#subscribe" class="btn btn-outline">{{ trans('Subscribe Now') }}</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{{ component.image.url|default(store.products.latest.image.url) }}" alt="Magazine Cover">
+        </div>
+    </div>
+</section>

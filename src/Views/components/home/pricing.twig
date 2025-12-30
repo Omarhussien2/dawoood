@@ -1,0 +1,51 @@
+{# Subscription Pricing Component #}
+<section id="subscribe" class="pricing-section" {{ component.attributes }}>
+    <div class="container">
+        <h2 class="section-title">{{ component.title|default(trans('Choose Your Plan')) }}</h2>
+        <div class="pricing-grid">
+            {# Single Issue #}
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>{{ trans('Single Issue') }}</h3>
+                    <div class="price">{{ trans('SAR 25') }}</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>{{ trans('One physical copy') }}</li>
+                    <li>{{ trans('Digital access not included') }}</li>
+                </ul>
+                <a href="/products" class="btn btn-outline">{{ trans('Browse Issues') }}</a>
+            </div>
+
+            {# Annual Subscription - Featured #}
+            <div class="pricing-card featured">
+                <div class="badge">{{ trans('Best Value') }}</div>
+                <div class="pricing-header">
+                    <h3>{{ trans('Annual') }}</h3>
+                    <div class="price">{{ trans('SAR 240') }}</div>
+                    <span class="savings">{{ trans('Save 20%') }}</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>{{ trans('12 Physical Issues') }}</li>
+                    <li>{{ trans('Unlimited Digital Access') }}</li>
+                    <li>{{ trans('Free Delivery') }}</li>
+                    <li>{{ trans('Exclusive Archive Access') }}</li>
+                </ul>
+                <a href="/products/annual-subscription" class="btn btn-primary">{{ trans('Subscribe Now') }}</a>
+            </div>
+
+            {# Semi-Annual #}
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>{{ trans('Semi-Annual') }}</h3>
+                    <div class="price">{{ trans('SAR 135') }}</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>{{ trans('6 Physical Issues') }}</li>
+                    <li>{{ trans('Unlimited Digital Access') }}</li>
+                    <li>{{ trans('Free Delivery') }}</li>
+                </ul>
+                <a href="/products/semi-annual-subscription" class="btn btn-outline">{{ trans('Subscribe') }}</a>
+            </div>
+        </div>
+    </div>
+</section>

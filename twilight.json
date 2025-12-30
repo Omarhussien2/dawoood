@@ -1,0 +1,64 @@
+{
+    "name": "Magazine Theme",
+    "version": "1.0.0",
+    "author": "Dawood Magazine",
+    "description": "A custom Salla theme for magazine subscriptions.",
+    "features": [],
+    "components": [
+        {
+            "key": "hero_slider",
+            "title": "Magazine Cover (Hero)",
+            "icon": "sicon-image",
+            "path": "home.hero",
+            "fields": [
+                {
+                    "id": "heading",
+                    "type": "string",
+                    "label": "Main Headline",
+                    "value": "Discover the World of Knowledge"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "label": "Subtitle",
+                    "value": "Exclusive interviews, in-depth analysis, and the stories that matter."
+                }
+            ]
+        },
+        {
+            "key": "pricing_table",
+            "title": "Subscription Plans",
+            "icon": "sicon-money-bill",
+            "path": "home.pricing",
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "label": "Section Title",
+                    "value": "Choose Your Plan"
+                }
+            ]
+        },
+        {
+            "key": "featured_articles",
+            "title": "Latest Articles",
+            "icon": "sicon-newspaper",
+            "path": "home.articles",
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "label": "Section Title",
+                    "value": "From the Editors"
+                }
+            ]
+        }
+    ],
+    "settings": {
+        "primary_color": {
+            "type": "color",
+            "label": "Primary Color",
+            "value": "#000000"
+        }
+    }
+}
